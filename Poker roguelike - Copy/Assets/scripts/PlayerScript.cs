@@ -22,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     public int RemainingDiscards;
     public int RemainingHands;
     public TextMeshProUGUI HandType;
+    public TextMeshProUGUI HandsAndDiscards;
 
     private List<string> namesOfSelectedCards = new List<string>();
     public List<GameObject> currentlySelectedCards = new List<GameObject>();
@@ -30,7 +31,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         player = this;
-        if(DataToStore.Instance.plyrAttributes == null || DataToStore.Instance.plyrAttributes.Count == 0)
+        if(DataToStore.Instance.plyrAttributes.Count == 0 || DataToStore.Instance.RemainingHands == 0)
         {
             plyrAttributes.Add(new NormalScore());
             plyrHealth = 2;
@@ -44,13 +45,12 @@ public class PlayerScript : MonoBehaviour
             RemainingHands = DataToStore.Instance.RemainingHands;
             RemainingDiscards = DataToStore.Instance.RemainingDiscards;
         }
-        //plyrAttributes.Add(new StraightChips());
     }
 
-    // Update is called once per frame
     void Update()
     {
         GetMouseClick();
+        UpdateText();
     }
 
     public void SaveData()
@@ -59,6 +59,11 @@ public class PlayerScript : MonoBehaviour
         DataToStore.Instance.RemainingDiscards = RemainingDiscards;
         DataToStore.Instance.RemainingHands = RemainingHands;
         DataToStore.Instance.plyrHealth = plyrHealth;
+    }
+
+    void UpdateText()
+    {
+        HandsAndDiscards.text = "Hands: " + RemainingHands + Environment.NewLine + "Discards: " + RemainingDiscards; 
     }
 
 
@@ -74,13 +79,15 @@ public class PlayerScript : MonoBehaviour
                 {
                     Card(hit.collider.gameObject);
                 }
-                else if (hit.collider.CompareTag("Play Button"))
+                else if (hit.collider.CompareTag("Play Button") && RemainingHands >0)
                 {
                     PlayButton();
+                    RemainingHands--;
                 }
-                else if (hit.collider.CompareTag("Discard Button"))
+                else if (hit.collider.CompareTag("Discard Button") && RemainingDiscards >0)
                 {
                     DiscardButton();
+                    RemainingDiscards--;
                 }
             }
         }

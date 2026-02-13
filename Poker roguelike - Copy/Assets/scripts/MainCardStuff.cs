@@ -56,7 +56,6 @@ public class MainCardStuff : MonoBehaviour
         UpdateDrawnCards();
         if(Enemy.Health <= 0)
         {
-
             SaveStats();
             DataToStore.Instance.PrepNxtGame();
         }

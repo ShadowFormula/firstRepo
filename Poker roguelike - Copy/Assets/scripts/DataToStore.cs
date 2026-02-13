@@ -49,7 +49,6 @@ public class DataToStore : MonoBehaviour
     public void PrepNxtGame()
     {
         enemyHealthMultiplier += 1.6m;
-        RemainingDiscards++;
         if(BossNode)
         {
             BossNode = false;
@@ -57,6 +56,8 @@ public class DataToStore : MonoBehaviour
         if(EliteNode)
         {
             EliteNode = false;
+            RemainingDiscards++;
+            RemainingHands = RemainingHands + (ElitesDefeated / 2);
             ElitesDefeated++;
         }
         SceneManager.LoadScene("menu scene");

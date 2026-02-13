@@ -72,6 +72,7 @@ public class HeartBonus : playerAttribute
         else
         {
             IsActive= false;
+            Enabled = true;
         }
         
         
@@ -102,6 +103,7 @@ public class StraightChips : playerAttribute
         else
         {
             IsActive = false;
+            Enabled = true;
         }
     }
 }
@@ -131,6 +133,7 @@ public class Fibonacci : playerAttribute
         else
         {
             IsActive = false;
+            Enabled = true;
         }
     }
 }
@@ -146,7 +149,7 @@ public class OneBuffArmy : playerAttribute
 
     public override void ModifyScore(List<Tuple<int, char, string>> cards, ref int[] ChipMult, int handType, ref PlayerScript player)
     {
-        if(player.plyrAttributes.Count > 1)
+        if(player.plyrAttributes.Count > 1 && Enabled)
         {
             IsActive = true;
             int mult = player.plyrAttributes.Count - 1;
@@ -155,6 +158,7 @@ public class OneBuffArmy : playerAttribute
         else
         {
             IsActive = false;
+            Enabled = true;
         }
     }
 }
@@ -170,7 +174,7 @@ public class TwoFace : playerAttribute
 
     public override void ModifyScore(List<Tuple<int, char, string>> cards, ref int[] ChipMult, int handType, ref PlayerScript player)
     {
-        if(cards.Select(c => c.Item1).Count(x => x == 13 || x == 12 || x == 11) > 0)
+        if((cards.Select(c => c.Item1).Count(x => x == 13 || x == 12 || x == 11) > 0) && Enabled)
         {
             IsActive = true;
             foreach(var card in cards)
@@ -184,6 +188,7 @@ public class TwoFace : playerAttribute
         else
         {
             IsActive = false;
+            Enabled = true;
         }
     }
 }
