@@ -8,8 +8,8 @@ using Unity.VisualScripting;
 public class EnemyLogic : MonoBehaviour
 {
     public int Health;
-    
-    public List<EnemyAttribute> debuffs = new List<EnemyAttribute>() {new NoDebuff()};
+
+    [SerializeReference] public List<EnemyAttribute> debuffs = new List<EnemyAttribute>() {new NoDebuff()};
     public Text StrHealth;
     private void Start()
     {
@@ -40,7 +40,7 @@ public class EnemyLogic : MonoBehaviour
         }
         StrHealth.text = Health.ToString();
     }
-
+    
     /// <summary>
     /// Returns a random enemy attribute that acts as a debuff to the score
     /// </summary>

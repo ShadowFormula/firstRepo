@@ -188,7 +188,7 @@ public class TwoFace : playerAttribute
     }
 }
 
-
+[System.Serializable]
 public abstract class EnemyAttribute : Attribute
 {
     public abstract void DebuffScore(List<Tuple<int, char, string>> cards, ref int[] ChipMult, int handType, ref PlayerScript player);
