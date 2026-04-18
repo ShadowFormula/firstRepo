@@ -21,9 +21,9 @@ public class DataToStore : MonoBehaviour
     [SerializeReference]
     public List<playerAttribute> plyrAttributes;
     public List<string> deck;
-    public int RemainingDiscards;
-    public int RemainingHands;
-    public int plyrHealth;
+    public int RemainingDiscards = 5;
+    public int RemainingHands = 6;
+    public int plyrHealth = 2;
 
 
 
@@ -57,8 +57,8 @@ public class DataToStore : MonoBehaviour
         {
             EliteNode = false;
             RemainingDiscards++;
-            RemainingHands = RemainingHands + (ElitesDefeated / 2);
             ElitesDefeated++;
+            RemainingHands = RemainingHands + (ElitesDefeated / 2);
         }
         SceneManager.LoadScene("menu scene");
     }
