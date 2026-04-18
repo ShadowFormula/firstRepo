@@ -9,7 +9,7 @@ public class UpdateSprite : MonoBehaviour
     public Sprite cardFace;
     public Sprite cardBack;
     public SpriteRenderer spriteRenderer;
-    private Selectable selectable;
+    private Selectable selected;
     private MainCardStuff cardStuff;
     void Start()
     {
@@ -28,12 +28,12 @@ public class UpdateSprite : MonoBehaviour
             
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
-        selectable = GetComponent<Selectable>();
+        selected = GetComponent<Selectable>();
     }
 
     void Update()
     {
-        if(selectable.drawn == true)
+        if(selected.drawn == true)
         {
             spriteRenderer.sprite = cardFace;
         }
@@ -41,7 +41,7 @@ public class UpdateSprite : MonoBehaviour
         {
             spriteRenderer.sprite = cardBack;
         }
-        if(selectable.selected == true)
+        if(selected.selected == true)
         {
             spriteRenderer.color = Color.white;
         }
